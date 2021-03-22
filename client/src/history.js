@@ -1,0 +1,3 @@
+const createHistory = require("history").createBrowserHistory;;  //this package is automatically installed by react router dom...i created this separate history component so that i can have access to history in non react components also...
+
+export default createHistory(); //now history obj can be accessed anywhere in our project....so now we can use plain router instead of browser router means pass this history as a prop to Browser router...but this will give error... so use Router instead of browser router and pass history
