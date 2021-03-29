@@ -48,13 +48,16 @@ export const fetchStream = (id) => async dispatch =>{
 };
 
 export const editStream = (id, formValues) => async dispatch =>{
-    const response = await streams.put(`/streams/${id}`, formValues);
+    //const response = await streams.put(`/streams/${id}`, formValues);           //?note: PUT VS PATCH put request updates all properties and replaces other properties we dont want to update..for eg: userId, we dont want to chage but this will get {title:'some title',description:'some desc..'} and there is no previous userId and Id associated with user...so in this case we can use PATCH request to update some provided key values only...
+    const response = await streams.patch(`/streams/${id}`, formValues);
     dispatch({type: EDIT_STREAM, payload: response.data });
+    history.push('/');
 }
 
 export const deleteStream = (id) => async dispatch =>{
     await streams.delete(`/streams/${id}`);
     dispatch({ type: DELETE_STREAM, payload: id });
+    history.push('/');
 }
 
 
